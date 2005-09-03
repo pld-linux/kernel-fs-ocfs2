@@ -17,9 +17,9 @@ Source0:	http://oss.oracle.com/projects/ocfs2/dist/files/source/v1.1/ocfs2-%{ver
 # Source0-md5:	d50680c60cd5210b4581febb2f5807ff
 URL:		http://sources.redhat.com/cluster/ocfs2/
 %if %{with kernel}
-%{?with_dist_kernel:BuildRequires:	kernel-module-build >= 2.6.7}
+%{?with_dist_kernel:BuildRequires:	kernel-module-build >= 2.6.12}
 %endif
-BuildRequires:	perl-base
+BuildRequires:	findutils
 %{?with_dist_kernel:%requires_releq_kernel_up}
 Requires(post,postun):	/sbin/depmod
 %{?with_dist_kernel:Requires(postun):	kernel}
@@ -60,7 +60,7 @@ Oracle Cluster File System.
 %configure \
 	--with-kernel=%{_kernelsrcdir} \
 	--enable-debug=no
-
+cd fs
 for cfg in %{?with_dist_kernel:%{?with_smp:smp} up}%{!?with_dist_kernel:nondist}; do
     if [ ! -r "%{_kernelsrcdir}/config-$cfg" ]; then
 	exit 1
@@ -83,20 +83,19 @@ for cfg in %{?with_dist_kernel:%{?with_smp:smp} up}%{!?with_dist_kernel:nondist}
 	CC="%{__cc}" CPP="%{__cpp}" \
 	M=$PWD O=$PWD \
 	%{?with_verbose:V=1}
-	mv lock_${dir}.ko lock_${dir}-$cfg.ko
+    install -d ../${cfg}
+    find . -name '*.ko' > files
+    tar -cf - -T files | tar -C ../${cfg} -xvf -
 done
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %if %{with kernel}
-# DLM
-install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}{,smp}/kernel/fs/ocfs2_locking/lock_dlm
-install src/dlm/lock_dlm-%{?with_dist_kernel:up}%{!?with_dist_kernel:nondist}.ko \
-	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/kernel/fs/ocfs2_locking/lock_dlm/lock_dlm.ko
+install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}{,smp}/kernel/{fs,ocfs}
+cp -a up/* $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/kernel/fs
 %if %{with smp} && %{with dist_kernel}
-install src/dlm/lock_dlm-smp.ko \
-	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/kernel/fs/ocfs2_locking/lock_dlm/lock_dlm.ko
+cp -a smp/* $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/kernel/fs
 %endif
 %endif
 
