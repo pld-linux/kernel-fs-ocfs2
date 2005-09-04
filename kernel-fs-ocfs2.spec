@@ -7,6 +7,7 @@
 #
 %define _rel	0.1
 Summary:	Oracle Cluster File System
+Summary(pl):	Oracle Cluster File System - klastrowy system plików Oracle
 Name:		kernel-fs-ocfs2
 Version:	1.1.2
 Release:	%{_rel}@%{_kernel_ver_str}
@@ -19,7 +20,6 @@ URL:		http://sources.redhat.com/cluster/ocfs2/
 %if %{with kernel}
 %{?with_dist_kernel:BuildRequires:	kernel-module-build >= 2.6.12}
 %endif
-BuildRequires:	findutils
 %{?with_dist_kernel:%requires_releq_kernel_up}
 Requires(post,postun):	/sbin/depmod
 %{?with_dist_kernel:Requires(postun):	kernel}
@@ -39,11 +39,34 @@ the new features and benefits are:
   subsystem
 - Improved performance of meta-data operations (space allocation,
   locking, etc).
-- Improved data caching / locking (for files such as oracle binaries,
-  libraries, etc)
+- Improved data caching / locking (for files such as Oracle binaries,
+  libraries, etc).
+
+This package contains Linux kernel driver.
+
+%description -l pl
+OCFS2 to nowa generacja klastrowego systemu plików Oracle (Oracle
+Cluster File System) dla Linuksa. Jest to oparty na obszarze system
+plików zgodny z POSIX. W przeciwieñstwie do poprzedniego wydania
+(OCFS) OCFS2 jest systemem plików ogólnego przeznaczenia, którego
+mo¿na u¿ywaæ dla wspó³dzielonych instalacji katalogu domowego
+Oracle'a, co czyni zarz±dzanie instalacjami Oracle Real Application
+Cluster (RAC) jeszcze ³atwiejszym. Nowe mo¿liwo¶ci i zalety OCFS2
+obejmuj± miêdzy innymi:
+- pliki lokalne wêz³owe i architekturowe u¿ywaj±ce dowi±zañ
+  symbolicznych zale¿nych od kontekstu (CDSL - Context Dependent
+  Symbolic Links)
+- do³±czalny, sieciowy DLM
+- ulepszon± obs³ugê kroniki i odtwarzania wêz³ów przy u¿yciu
+  podsystemu JBD z j±dra Linuksa
+- ulepszone buforowanie danych i blokowanie (dla plików takich jak
+  binaria czy biblioteki Oracle'a).
+
+Ten pakiet zawiera sterownik j±dra Linuksa.
 
 %package -n kernel-smp-fs-ocfs2
 Summary:	Oracle Cluster File System
+Summary(pl):	Oracle Cluster File System - klastrowy system plików Oracle
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 %{?with_dist_kernel:%requires_releq_kernel_smp}
@@ -51,7 +74,43 @@ Requires(post,postun):	/sbin/depmod
 %{?with_dist_kernel:Requires(postun):	kernel-smp}
 
 %description -n kernel-smp-fs-ocfs2
-Oracle Cluster File System.
+OCFS2 is the next generation of the Oracle Cluster File System for
+Linux. It is an extent based, POSIX compliant file system. Unlike the
+previous release (OCFS), OCFS2 is a general-purpose file system that
+can be used for shared Oracle home installations making management of
+Oracle Real Application Cluster (RAC) installations even easier. Among
+the new features and benefits are:
+- Node and architecture local files using Context Dependent Symbolic
+  Links (CDSL)
+- Network based pluggable DLM
+- Improved journaling / node recovery using the Linux Kernel "JBD"
+  subsystem
+- Improved performance of meta-data operations (space allocation,
+  locking, etc).
+- Improved data caching / locking (for files such as Oracle binaries,
+  libraries, etc).
+
+This package contains Linux SMP kernel driver.
+
+%description -n kernel-smp-fs-ocfs2 -l pl
+OCFS2 to nowa generacja klastrowego systemu plików Oracle (Oracle
+Cluster File System) dla Linuksa. Jest to oparty na obszarze system
+plików zgodny z POSIX. W przeciwieñstwie do poprzedniego wydania
+(OCFS) OCFS2 jest systemem plików ogólnego przeznaczenia, którego
+mo¿na u¿ywaæ dla wspó³dzielonych instalacji katalogu domowego
+Oracle'a, co czyni zarz±dzanie instalacjami Oracle Real Application
+Cluster (RAC) jeszcze ³atwiejszym. Nowe mo¿liwo¶ci i zalety OCFS2
+obejmuj± miêdzy innymi:
+- pliki lokalne wêz³owe i architekturowe u¿ywaj±ce dowi±zañ
+  symbolicznych zale¿nych od kontekstu (CDSL - Context Dependent
+  Symbolic Links)
+- do³±czalny, sieciowy DLM
+- ulepszon± obs³ugê kroniki i odtwarzania wêz³ów przy u¿yciu
+  podsystemu JBD z j±dra Linuksa
+- ulepszone buforowanie danych i blokowanie (dla plików takich jak
+  binaria czy biblioteki Oracle'a).
+
+Ten pakiet zawiera sterownik j±dra Linuksa SMP.
 
 %prep
 %setup -q -n ocfs2-%{version}
