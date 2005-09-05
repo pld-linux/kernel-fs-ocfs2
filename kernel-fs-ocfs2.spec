@@ -1,6 +1,6 @@
 #
 # Condtional build:
-%bcond_without	kernel          # don't build kernel modules
+%bcond_without	kernel		# don't build kernel modules
 %bcond_without	dist_kernel	# without distribution kernel
 %bcond_without	smp		# without smp packages
 %bcond_with	verbose		# verbose build (V=1)
@@ -130,7 +130,7 @@ for cfg in %{?with_dist_kernel:%{?with_smp:smp} up}%{!?with_dist_kernel:nondist}
     ln -sf %{_kernelsrcdir}/include/linux/autoconf-$cfg.h include/linux/autoconf.h
     ln -sf %{_kernelsrcdir}/include/asm-%{_target_base_arch} include/asm
     %if %{without dist_kernel}
-        [ ! -x %{_kernelsrcdir}/scripts/kallsyms ] || ln -sf %{_kernelsrcdir}/scripts
+	[ ! -x %{_kernelsrcdir}/scripts/kallsyms ] || ln -sf %{_kernelsrcdir}/scripts
     %endif
     touch include/config/MARKER
     %{__make} -C %{_kernelsrcdir} clean \
