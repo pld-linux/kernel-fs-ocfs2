@@ -16,7 +16,7 @@ License:	GPL v2
 Group:		Base/Kernel
 Source0:	http://oss.oracle.com/projects/ocfs2/dist/files/source/v1.1/ocfs2-%{version}.tar.gz
 # Source0-md5:	d50680c60cd5210b4581febb2f5807ff
-URL:		http://sources.redhat.com/cluster/ocfs2/
+URL:		http://oss.oracle.com/projects/ocfs2/
 %if %{with kernel}
 %{?with_dist_kernel:BuildRequires:	kernel-module-build >= 2.6.12}
 %endif
