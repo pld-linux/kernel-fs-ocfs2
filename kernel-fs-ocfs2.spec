@@ -18,7 +18,7 @@ Source0:	http://oss.oracle.com/projects/ocfs2/dist/files/source/v1.1/ocfs2-%{ver
 # Source0-md5:	d50680c60cd5210b4581febb2f5807ff
 URL:		http://oss.oracle.com/projects/ocfs2/
 %if %{with kernel}
-%{?with_dist_kernel:BuildRequires:	kernel-module-build >= 2.6.12}
+%{?with_dist_kernel:BuildRequires:	kernel-module-build >= 3:2.6.12}
 %endif
 %{?with_dist_kernel:%requires_releq_kernel_up}
 Requires(post,postun):	/sbin/depmod
@@ -121,31 +121,31 @@ Ten pakiet zawiera sterownik j±dra Linuksa SMP.
 	--enable-debug=no
 cd fs
 for cfg in %{?with_dist_kernel:%{?with_smp:smp} up}%{!?with_dist_kernel:nondist}; do
-    if [ ! -r "%{_kernelsrcdir}/config-$cfg" ]; then
-	exit 1
-    fi
-    rm -rf include
-    install -d include/{linux,config}
-    ln -sf %{_kernelsrcdir}/config-$cfg .config
-    ln -sf %{_kernelsrcdir}/include/linux/autoconf-$cfg.h include/linux/autoconf.h
-    ln -sf %{_kernelsrcdir}/include/asm-%{_target_base_arch} include/asm
-    ln -sf %{_kernelsrcdir}/Module.symvers-$cfg Module.symvers
-    %if %{without dist_kernel}
+	if [ ! -r "%{_kernelsrcdir}/config-$cfg" ]; then
+		exit 1
+	fi
+	rm -rf include
+	install -d include/{linux,config}
+	ln -sf %{_kernelsrcdir}/config-$cfg .config
+	ln -sf %{_kernelsrcdir}/include/linux/autoconf-$cfg.h include/linux/autoconf.h
+	ln -sf %{_kernelsrcdir}/include/asm-%{_target_base_arch} include/asm
+	ln -sf %{_kernelsrcdir}/Module.symvers-$cfg Module.symvers
+	%if %{without dist_kernel}
 	[ ! -x %{_kernelsrcdir}/scripts/kallsyms ] || ln -sf %{_kernelsrcdir}/scripts
-    %endif
-    touch include/config/MARKER
-    %{__make} -C %{_kernelsrcdir} clean \
+	%endif
+	touch include/config/MARKER
+	%{__make} -C %{_kernelsrcdir} clean \
 	RCS_FIND_IGNORE="-name '*.ko' -o" \
 	M=$PWD O=$PWD \
 	%{?with_verbose:V=1}
-    %{__make} -C %{_kernelsrcdir} modules \
+	%{__make} -C %{_kernelsrcdir} modules \
 	RCS_FIND_IGNORE="-name '*.ko' -o" \
 	CC="%{__cc}" CPP="%{__cpp}" \
 	M=$PWD O=$PWD \
 	%{?with_verbose:V=1}
-    install -d ../${cfg}
-    find . -name '*.ko' > files
-    tar -cf - -T files | tar -C ../${cfg} -xvf -
+	install -d ../${cfg}
+	find . -name '*.ko' > files
+	tar -cf - -T files | tar -C ../${cfg} -xvf -
 done
 
 %install
