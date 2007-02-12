@@ -7,7 +7,7 @@
 #
 %define _rel	0.1
 Summary:	Oracle Cluster File System
-Summary(pl):	Oracle Cluster File System - klastrowy system plików Oracle
+Summary(pl.UTF-8):   Oracle Cluster File System - klastrowy system plikÃ³w Oracle
 Name:		kernel-fs-ocfs2
 Version:	1.1.2
 Release:	%{_rel}@%{_kernel_ver_str}
@@ -44,29 +44,29 @@ the new features and benefits are:
 
 This package contains Linux kernel driver.
 
-%description -l pl
-OCFS2 to nowa generacja klastrowego systemu plików Oracle (Oracle
+%description -l pl.UTF-8
+OCFS2 to nowa generacja klastrowego systemu plikÃ³w Oracle (Oracle
 Cluster File System) dla Linuksa. Jest to oparty na obszarze system
-plików zgodny z POSIX. W przeciwieñstwie do poprzedniego wydania
-(OCFS) OCFS2 jest systemem plików ogólnego przeznaczenia, którego
-mo¿na u¿ywaæ dla wspó³dzielonych instalacji katalogu domowego
-Oracle'a, co czyni zarz±dzanie instalacjami Oracle Real Application
-Cluster (RAC) jeszcze ³atwiejszym. Nowe mo¿liwo¶ci i zalety OCFS2
-obejmuj± miêdzy innymi:
-- pliki lokalne wêz³owe i architekturowe u¿ywaj±ce dowi±zañ
-  symbolicznych zale¿nych od kontekstu (CDSL - Context Dependent
+plikÃ³w zgodny z POSIX. W przeciwieÅ„stwie do poprzedniego wydania
+(OCFS) OCFS2 jest systemem plikÃ³w ogÃ³lnego przeznaczenia, ktÃ³rego
+moÅ¼na uÅ¼ywaÄ‡ dla wspÃ³Å‚dzielonych instalacji katalogu domowego
+Oracle'a, co czyni zarzÄ…dzanie instalacjami Oracle Real Application
+Cluster (RAC) jeszcze Å‚atwiejszym. Nowe moÅ¼liwoÅ›ci i zalety OCFS2
+obejmujÄ… miÄ™dzy innymi:
+- pliki lokalne wÄ™zÅ‚owe i architekturowe uÅ¼ywajÄ…ce dowiÄ…zaÅ„
+  symbolicznych zaleÅ¼nych od kontekstu (CDSL - Context Dependent
   Symbolic Links)
-- do³±czalny, sieciowy DLM
-- ulepszon± obs³ugê kroniki i odtwarzania wêz³ów przy u¿yciu
-  podsystemu JBD z j±dra Linuksa
-- ulepszone buforowanie danych i blokowanie (dla plików takich jak
+- doÅ‚Ä…czalny, sieciowy DLM
+- ulepszonÄ… obsÅ‚ugÄ™ kroniki i odtwarzania wÄ™zÅ‚Ã³w przy uÅ¼yciu
+  podsystemu JBD z jÄ…dra Linuksa
+- ulepszone buforowanie danych i blokowanie (dla plikÃ³w takich jak
   binaria czy biblioteki Oracle'a).
 
-Ten pakiet zawiera sterownik j±dra Linuksa.
+Ten pakiet zawiera sterownik jÄ…dra Linuksa.
 
 %package -n kernel-smp-fs-ocfs2
 Summary:	Oracle Cluster File System
-Summary(pl):	Oracle Cluster File System - klastrowy system plików Oracle
+Summary(pl.UTF-8):   Oracle Cluster File System - klastrowy system plikÃ³w Oracle
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 %{?with_dist_kernel:%requires_releq_kernel_smp}
@@ -92,25 +92,25 @@ the new features and benefits are:
 
 This package contains Linux SMP kernel driver.
 
-%description -n kernel-smp-fs-ocfs2 -l pl
-OCFS2 to nowa generacja klastrowego systemu plików Oracle (Oracle
+%description -n kernel-smp-fs-ocfs2 -l pl.UTF-8
+OCFS2 to nowa generacja klastrowego systemu plikÃ³w Oracle (Oracle
 Cluster File System) dla Linuksa. Jest to oparty na obszarze system
-plików zgodny z POSIX. W przeciwieñstwie do poprzedniego wydania
-(OCFS) OCFS2 jest systemem plików ogólnego przeznaczenia, którego
-mo¿na u¿ywaæ dla wspó³dzielonych instalacji katalogu domowego
-Oracle'a, co czyni zarz±dzanie instalacjami Oracle Real Application
-Cluster (RAC) jeszcze ³atwiejszym. Nowe mo¿liwo¶ci i zalety OCFS2
-obejmuj± miêdzy innymi:
-- pliki lokalne wêz³owe i architekturowe u¿ywaj±ce dowi±zañ
-  symbolicznych zale¿nych od kontekstu (CDSL - Context Dependent
+plikÃ³w zgodny z POSIX. W przeciwieÅ„stwie do poprzedniego wydania
+(OCFS) OCFS2 jest systemem plikÃ³w ogÃ³lnego przeznaczenia, ktÃ³rego
+moÅ¼na uÅ¼ywaÄ‡ dla wspÃ³Å‚dzielonych instalacji katalogu domowego
+Oracle'a, co czyni zarzÄ…dzanie instalacjami Oracle Real Application
+Cluster (RAC) jeszcze Å‚atwiejszym. Nowe moÅ¼liwoÅ›ci i zalety OCFS2
+obejmujÄ… miÄ™dzy innymi:
+- pliki lokalne wÄ™zÅ‚owe i architekturowe uÅ¼ywajÄ…ce dowiÄ…zaÅ„
+  symbolicznych zaleÅ¼nych od kontekstu (CDSL - Context Dependent
   Symbolic Links)
-- do³±czalny, sieciowy DLM
-- ulepszon± obs³ugê kroniki i odtwarzania wêz³ów przy u¿yciu
-  podsystemu JBD z j±dra Linuksa
-- ulepszone buforowanie danych i blokowanie (dla plików takich jak
+- doÅ‚Ä…czalny, sieciowy DLM
+- ulepszonÄ… obsÅ‚ugÄ™ kroniki i odtwarzania wÄ™zÅ‚Ã³w przy uÅ¼yciu
+  podsystemu JBD z jÄ…dra Linuksa
+- ulepszone buforowanie danych i blokowanie (dla plikÃ³w takich jak
   binaria czy biblioteki Oracle'a).
 
-Ten pakiet zawiera sterownik j±dra Linuksa SMP.
+Ten pakiet zawiera sterownik jÄ…dra Linuksa SMP.
 
 %prep
 %setup -q -n ocfs2-%{version}
