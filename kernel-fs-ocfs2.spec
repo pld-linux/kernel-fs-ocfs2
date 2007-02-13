@@ -7,7 +7,7 @@
 #
 %define _rel	0.1
 Summary:	Oracle Cluster File System
-Summary(pl.UTF-8):   Oracle Cluster File System - klastrowy system plików Oracle
+Summary(pl.UTF-8):	Oracle Cluster File System - klastrowy system plików Oracle
 Name:		kernel-fs-ocfs2
 Version:	1.1.2
 Release:	%{_rel}@%{_kernel_ver_str}
@@ -66,7 +66,7 @@ Ten pakiet zawiera sterownik jądra Linuksa.
 
 %package -n kernel-smp-fs-ocfs2
 Summary:	Oracle Cluster File System
-Summary(pl.UTF-8):   Oracle Cluster File System - klastrowy system plików Oracle
+Summary(pl.UTF-8):	Oracle Cluster File System - klastrowy system plików Oracle
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 %{?with_dist_kernel:%requires_releq_kernel_smp}
